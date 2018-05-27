@@ -31,6 +31,18 @@ NOME_DO_ARQUIVO = ""
 INPUT_EXTENSION = ".in"
 OUTPUT_EXTENSION = ".out"
 
+def descobre_comando(nome):
+	""" Dado o nome do arquivo, descobre o comando que deve ser executado. Há duas opções:
+	- python3 <nome>, caso o arquivo possua extensão .py
+	- ./<nome>, caso o arquivo seja um executável qualquer (ex : programa compilado em C)
+	"""
+	if ".py" in nome:
+		""" Temos um arquivo Python. Retornamos o primeiro caso"""
+		return "python3 %s" % nome
+	else:
+		""" Temos um executável qualquer. Retornamos o segundo caso"""
+		return "./%s" % nome
+
 def roda_comando(comando,entrada = ""):
 	""" Faz o parsing da string comando,executa o comando shell e retorna a saída.
 	Caso haja uma entrada (stdin), fornece ela ao programa.
@@ -91,8 +103,8 @@ class TesteSusy:
 		PATH_DOWNLOAD_OUT = PATH_SUSY +  "/dados/" + self.nome + OUTPUT_EXTENSION
 		caso_teste = faz_download(PATH_DOWNLOAD_IN)
 		saida_esperada = faz_download(PATH_DOWNLOAD_OUT)
-		comando_python = "python3 %s" % NOME_DO_ARQUIVO
-		saida_obtida = roda_comando(comando_python,caso_teste)
+		comando_executavel = descobre_comando(NOME_DO_ARQUIVO)
+		saida_obtida = roda_comando(comando_executavel,caso_teste)
 		if saida_esperada == saida_obtida:
 			""" O código executou corretamente"""
 			print(cores.NEGRITO + ("%s.in : " % self.nome) + cores.AZUL + "OK" + cores.FIM)
