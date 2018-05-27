@@ -40,7 +40,7 @@ def roda_comando(comando,entrada = ""):
 
 def faz_download(url):
 	""" Captura a saída do comando curl com a url designada"""
-	comando = "curl -s %s" % (url) # curl para baixar silenciosamente a página
+	comando = "curl -sk %s" % (url) # curl para baixar silenciosamente a página
 	return roda_comando(comando)
 
 def descobre_arquivos(texto):
