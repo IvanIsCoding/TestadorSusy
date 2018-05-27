@@ -45,7 +45,7 @@ def faz_download(url):
 
 def descobre_arquivos(texto):
 	""" Dado o codigo html da pagina, descobre quais testes abertos o problema tem"""
-	limite = re.search(r"Testes fechados",texto).span()[0] # obtemos a posicao em que começam os testes fechados
+	limite = re.search(r"Testes fechados*",texto).span()[0] # obtemos a posicao em que começam os testes fechados
 	return re.findall(r"arq\d\d.in",texto[:limite])
 
 def remove_duplicatas(lista):
