@@ -2,7 +2,7 @@
 ## Objetivos 
 A ideia do testador é agilizar a detecção de erros no código, evitar submissões incorretas e além de tudo provar os poderes da linguagem Python. 
 ## Utilidade
-Este script  para facilitar a verificação de seu programa pelos casos
+Este script foi feito para facilitar a verificação de seu programa pelos casos
 teste do *SuSy*. O que não representa que o programa está correto, mas que passou
 pelos casos **abertos** do *SuSy*.
 
