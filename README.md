@@ -19,5 +19,5 @@ Nenhum arquivo adicional é criado.
 >     python3 testador.py mc102qrst 01 lab01.py
 >     python3 testador.py mc202abc 00 lab00
 ### Obs:
-* O programa curl é necessário para utilizar o script
-* O script é compatível com versões do Python a partir da versão 3.5 
+* O programa *curl* é necessário para utilizar o script
+* O script é compatível com versões do *Python* a partir da versão 3.5 
