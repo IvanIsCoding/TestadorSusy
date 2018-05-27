@@ -11,8 +11,9 @@ O script baixa os arquivos de teste do servidor da Unicamp, roda seu programa ne
 Nenhum arquivo adicional é criado.
 ## Como utilizar
 1. Certifique-se que os arquivos que você deseja executar estejam na mesma pasta;
-2. Coloque o testador.py nesta pasta;
-3. Execute o testador com o comando:
+2. Caso o arquivo seja um executável, certifique-se que você tem permissão de executar o arquivo;
+3. Coloque o testador.py nesta pasta;
+4. Execute o testador com o comando:
 >     python3 testador.py <turma> <laboratorio> <nome do arquivo>
 
 ## Exemplo de uso
