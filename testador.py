@@ -99,7 +99,7 @@ class TesteSusy:
 			return 0
 		else:
 			""" O código não executou corretamente. Iremos exibir a diferença"""
-			print(cores.NEGRITO + ("%s.in :" % self.nome) + cores.VERMELHO + "Resposta Errada" + cores.FIM)
+			print(cores.NEGRITO + ("%s.in : " % self.nome) + cores.VERMELHO + "Resposta Errada" + cores.FIM)
 			print(">>> Saida esperada (SuSy):")
 			print(saida_esperada, end = "") # usamos end = "" para evitar duas quebras de linha
 			print(">>> Saida do seu programa:")
