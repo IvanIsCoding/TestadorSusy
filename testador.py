@@ -28,6 +28,8 @@ import re
 
 PATH_SUSY = "https://susy.ic.unicamp.br:9999/"
 NOME_DO_ARQUIVO = ""
+INPUT_EXTENSION = ".in"
+OUTPUT_EXTENSION = ".out"
 
 def roda_comando(comando,entrada = ""):
 	""" Faz o parsing da string comando,executa o comando shell e retorna a saída.
@@ -44,9 +46,21 @@ def faz_download(url):
 	return roda_comando(comando)
 
 def descobre_arquivos(texto):
-	""" Dado o codigo html da pagina, descobre quais testes abertos o problema tem"""
+	""" Dado o código html da página, descobre quais testes abertos o problema tem"""
 	limite = re.search(r"Testes fechados*",texto).span()[0] # obtemos a posicao em que começam os testes fechados
 	return re.findall(r"arq\d*",texto[:limite])
+
+def descobre_extensao(texto,arquivos):
+	""" Dado o código html da página, descobre a extensão dos arquivos de saída : .out ou .res
+	Esta função foi adicionada para dar compatilibilidade com turmas que não possuiam extensão .out .
+	"""
+	final_com_out = arquivos[0] + ".out" # vamos checar se há um arq*.out
+	if final_com_out in texto:
+		""" Há um arquivo com extensão .out, logo está extensão será a de todos outros arquivos"""
+		return ".out"
+	else:
+		""" Não há um arquivo com extensão .out, logo a extensão .res será a de todos outros arquivos"""
+		return ".res"
 
 def remove_duplicatas(lista):
 	""" Os arquivos de teste apareciam duplicados no HTML. Essa função remove esses testes"""
@@ -73,8 +87,8 @@ class TesteSusy:
 
 	def roda(self):
 		""" Roda o código do usuário, baixa o código esperado e compara"""
-		PATH_DOWNLOAD_IN = PATH_SUSY +  "/dados/" + self.nome + ".in"
-		PATH_DOWNLOAD_OUT = PATH_SUSY +  "/dados/" + self.nome + ".out"
+		PATH_DOWNLOAD_IN = PATH_SUSY +  "/dados/" + self.nome + INPUT_EXTENSION
+		PATH_DOWNLOAD_OUT = PATH_SUSY +  "/dados/" + self.nome + OUTPUT_EXTENSION
 		caso_teste = faz_download(PATH_DOWNLOAD_IN)
 		saida_esperada = faz_download(PATH_DOWNLOAD_OUT)
 		comando_python = "python3 %s" % NOME_DO_ARQUIVO
@@ -110,7 +124,10 @@ if __name__ == "__main__":
 	
 	print("Executando os testes...")
 
-	lista_de_arquivos = remove_duplicatas(descobre_arquivos(faz_download(PATH_TESTE))) # gera a lista com os arquivos do lab e remove testes que aparecem duas vezes
+	codigo_fonte_pagina_teste = faz_download(PATH_TESTE) # baixamos a página que contém os índices dos testes
+	lista_de_arquivos = remove_duplicatas(descobre_arquivos(codigo_fonte_pagina_teste)) # gera a lista com os arquivos do lab e remove testes que aparecem duas vezes
+	OUTPUT_EXTENSION = descobre_extensao(codigo_fonte_pagina_teste,lista_de_arquivos) # descobre se a extensão é .out ou .res
+
 	testes_incorretos = 0
 
 	for arquivo in lista_de_arquivos:
