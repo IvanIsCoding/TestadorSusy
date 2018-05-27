@@ -124,7 +124,8 @@ if __name__ == "__main__":
 	if len(argumentos) < 4:
 		# Usuário não forneceu numero suficiente de parâmetros
 		print("Uso     : python3 testador.py <turma> <laboratorio> <nome do arquivo>")
-		print("Exemplo : python3 testador.py mc102qrst 01 lab01.py")
+		print("Exemplo : python3 testador.py mc102qrst 01 lab01.py") # exemplo de arquivo Python
+		print("Exemplo : python3 testador.py mc202abc 00 lab00") # exemplo de executável qualquer
 		exit() # Nada acontece, feijoada
 	
 	turma = argumentos[1]
