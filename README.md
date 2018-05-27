@@ -12,8 +12,7 @@ Nenhum arquivo adicional é criado.
 ## Como utilizar
 1. Certifique-se que os arquivos que você deseja executar estejam na mesma pasta;
 2. Coloque o testador.py nesta pasta;
-3. Verifique se o valter tem permissão para ser executado;
-4. Execute o testador com o comando:
+3. Execute o testador com o comando:
 >     python3 testador.py <turma> <laboratorio> <nome do arquivo>
 
 ## Exemplo de uso
