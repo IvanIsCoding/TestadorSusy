@@ -46,10 +46,10 @@ def faz_download(url):
 def descobre_arquivos(texto):
 	""" Dado o codigo html da pagina, descobre quais testes abertos o problema tem"""
 	limite = re.search(r"Testes fechados*",texto).span()[0] # obtemos a posicao em que começam os testes fechados
-	return re.findall(r"arq\d\d.in",texto[:limite])
+	return re.findall(r"arq\d*",texto[:limite])
 
 def remove_duplicatas(lista):
-	""" Por algum motivo, alguns arquivos de teste apareciam duplicados no HTML. Essa função remove esses testes"""
+	""" Os arquivos de teste apareciam duplicados no HTML. Essa função remove esses testes"""
 	nova_lista = list(set(lista)) # removemos as duplicatas com o set e após transformamos o conjunto em uma lista novamente
 	return sorted(nova_lista) # ordenamos pois o set pode alterar a ordem
 
