@@ -25,6 +25,8 @@ import subprocess
 import sys
 import shlex
 import re
+import urllib.request
+import ssl
 
 PATH_SUSY = "https://susy.ic.unicamp.br:9999/"
 NOME_DO_ARQUIVO = ""
@@ -53,9 +55,8 @@ def roda_comando(comando,entrada = ""):
 	return resultado.stdout.decode("utf-8") # converte o resultado para UTF-8 e retorna
 
 def faz_download(url):
-	""" Captura a saída do comando curl com a url designada"""
-	comando = "curl -sk %s" % (url) # curl para baixar silenciosamente a página
-	return roda_comando(comando)
+	""" Captura a saída de uma requisição wed a url designada"""
+	return urllib.request.urlopen(url, context=ssl.SSLContext(ssl.PROTOCOL_TLSv1)).read().decode('utf-8')
 
 def descobre_arquivos(texto):
 	""" Dado o código html da página, descobre quais testes abertos o problema tem"""
