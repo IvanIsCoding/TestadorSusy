@@ -1,6 +1,7 @@
-# Testador em Python do Susy
+# Testador em Python do Susy [![](https://img.shields.io/badge/python-3.5+-blue.svg)](https://www.python.org/download/releases/3.5.0/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 ## Objetivos 
-A ideia do testador é agilizar a detecção de erros no código, evitar submissões incorretas e além de tudo provar os poderes da linguagem Python. 
+A ideia do testador é agilizar a detecção de erros no código, evitar submissões incorretas e além de tudo mostrar para
+os alunos da disciplina de Introdução à Programação que os conhecimentos que eles aprendem possuem aplicações práticas. 
 ## Utilidade
 Este script foi feito para facilitar a verificação de seu programa pelos casos
 teste do *SuSy*. O que não representa que o programa está correto, mas que passou
